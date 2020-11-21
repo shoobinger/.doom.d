@@ -61,8 +61,6 @@
 
 ;; Readlist.
 (require 'readlist)
-;;(map! :map readlist-mode-map "SPC m u" #'readlist-start-reading)
-;;(map! "SPC 6" #'readlist-start-reading)
 (map! :map readlist-mode-map :desc "Start reading selected book" :localleader "u" #'readlist-start-reading)
 
 ;; Org mode.

@@ -3,7 +3,11 @@
 ;;;
 ;;; Code:
 
-(define-minor-mode readlist-mode nil " Readlist" :keymap (make-sparse-keymap))
+(define-minor-mode readlist-mode
+  " Toggle Readlist mode"
+  :init-value nil
+  :lighter " Readlist"
+  :keymap (make-sparse-keymap))
 
 (defun readlist-start-reading()
   "Move the selected book to the ACTIVE status and create a notes org file for it."
@@ -24,9 +28,7 @@
           (projectile-serialize-cache))
 
         ;; Replace the heading with the link to the file.
-        (beginning-of-visual-line)
-        (search-forward book-name)
-        (replace-match (concat "[[" new-file "][" book-name "]]"))
+        (org-edit-headline (concat "[[file:" new-file "][" book-name "]]"))
   ))))
 
 (provide 'readlist)
