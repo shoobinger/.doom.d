@@ -51,3 +51,5 @@
 
 (package! dap-mode)
 (package! org-jira)
+(package! systemd)
+(package! reverse-im)
