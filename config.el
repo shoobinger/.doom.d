@@ -114,7 +114,7 @@
       send-mail-function 'message-send-mail-with-sendmail
       message-directory "~/mail/"
       notmuch-maildir-use-notmuch-insert 't
-      ;; message-fcc-handler-function 'message-do-fcc
+      message-fcc-handler-function 'message-do-fcc
       notmuch-fcc-dirs '(("is@suive.co" . "personal/Sent/ -inbox +sent -unread")))
 
 (setq notmuch-saved-searches
@@ -131,8 +131,8 @@
   (setq message-citation-line-function 'message-insert-formatted-citation-line))
 
 ;; Elfeed
-(map! :leader :desc "Open feeds" "o n" #'elfeed)
 (setq-default elfeed-search-filter "@2-week-ago +unread ")
+(map! :leader :desc "Open feeds" "o n" #'elfeed)
 (setq elfeed-db-directory "~/.local/share/elfeed")
 (require 'feeds "~/.local/share/feeds.el")
 (setq elfeed-feeds feeds)
@@ -175,7 +175,7 @@
 (defun browse-url-mpv (url &optional new-window)
   (start-process "mpv" "*mpv*" "mpv" url))
 
-(setq browse-url-browser-function '(("https:\\/\\/www\\.youtube." . browse-url-mpv)
+(setq browse-url-handlers '(("https:\\/\\/www\\.youtube." . browse-url-mpv)
                                     ("." . browse-url-xdg-open)))
 
 ;; Enable Russian-to-English layout translation in commands.
@@ -197,3 +197,6 @@
     (message "Opening %s done" file)))
 
 (map! :map dired-mode-map "o" #'dired-open-file)
+
+;; Org-agenda
+(setq org-agenda-files '("~/org/events.org"))
